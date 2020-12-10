@@ -1,23 +1,24 @@
 var readline=require('readline-sync');
+var chalk=require('chalk');
 var score=0;
 var lscore=0;
 var flag=true;
-console.log("GK Quiz");
+console.log(chalk.bold.underline.green("GK Quiz"));
 var user=readline.question("Enter your name ");
-console.log("Welcome!! "+user);
-console.log("Test your general knowledge by taking this quiz. \nRules: \n1. You have 5 levels and each level contains 5 questions \n2. you should score minimum 3 points to pass a level and move on to next \n3. You get 1 point for each wright answer.There is no negative marking.\nAre you Ready? \nlet's begin!!!");
+console.log(chalk.bold.rgb(191, 61, 165)("Welcome!! "+user));
+console.log(chalk.bgCyan("Test your general knowledge by taking this quiz.")+" \n"+chalk.bold.bgCyan("Rules:")+chalk.rgb(191, 61, 165)(" \n1. You have 5 levels and each level contains 5 questions \n2. you should score minimum 3 points to pass a level and move on to next \n3. You get 1 point for each wright answer.There is no negative marking.")+"\nAre you Ready? \n"+chalk.green("let's begin!!!"));
 
 var highscore={name:"Marivignesh",score:"25"};
 
 function play(question,answer){
-  var uans=readline.question(question+"Your option:");
+  var uans=readline.question(chalk.rgb(9,160,235)(question)+"Your option:");
   if(uans==answer){
-    console.log("correct answer!! You get 1 point");
+    console.log(chalk.rgb(47,245,93)("correct answer!! You get 1 point"));
     score+=1;
     lscore+=1;
   }
   else{
-    console.log("sorry!!wrong answer you get 0 point");
+    console.log(chalk.red("sorry!!wrong answer you get 0 point"));
   }
   for(j=0;j<50;j++)
   {
@@ -92,16 +93,16 @@ function main(){
     }
   }
     if(lscore>2){
-    console.log("Level "+k+" passed..Good to see you in next level..");
+    console.log(chalk.greenBright("Level "+k+" passed..Good to see you in next level.."));
     }
     else
     {
-      console.log("sorry!! Your level score is"+lscore+" < 3! cannot proceed to next Level..\nTry better next time!!");
+      console.log(chalk.redBright("sorry!! Your level score is"+lscore+" < 3! cannot proceed to next Level..\nTry better next time!!"));
       break;
     }
   }
   console.log("Hurray!! You have successfully completed this quiz.");
-  console.log("Your final score is"+score);
+  console.log("Your final score is "+score);
   console.log("Highscore:"+highscore.score);
 }
 
